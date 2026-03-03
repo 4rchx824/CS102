@@ -12,6 +12,7 @@ public class Player implements Serializable {
 
     private Game game;
     private boolean online = true;
+    private boolean ai = false;
     private String name;
     private int score;
     // mycoins[i] = coins held, indexed by GemColor ordinal (0=WHITE..5=GOLD)
@@ -26,6 +27,12 @@ public class Player implements Serializable {
     public Player(Game game, String name) {
         this.game = game;
         this.name = name;
+    }
+
+    public Player(Game game, String name, boolean ai) {
+        this.game = game;
+        this.name = name;
+        this.ai = ai;
     }
 
     // -------------------------------------------------------------------------
@@ -204,6 +211,8 @@ public class Player implements Serializable {
     public void setGame(Game game) { this.game = game; }
     public boolean isOnline() { return online; }
     public void setOnline(boolean online) { this.online = online; }
+    public boolean isAi() { return ai; }
+    public void setAi(boolean ai) { this.ai = ai; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
     public int getScore() { return score; }
