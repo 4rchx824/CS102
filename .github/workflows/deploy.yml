@@ -42,15 +42,21 @@ jobs:
 
       # 6. Authenticate with AWS using your Role (No Access Keys!)
       - name: Configure AWS Credentials
+        id: aws_creds # Added ID to reference the outputs
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_REGION }}
+          output-credentials: true # Crucial: exposes the temporary keys to the next step
 
       # 7. Deploy to Elastic Beanstalk
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v22
         with:
+          # Pass the temporary credentials explicitly here
+          aws_access_key: ${{ steps.aws_creds.outputs.aws-access-key-id }}
+          aws_secret_key: ${{ steps.aws_creds.outputs.aws-secret-access-key }}
+          aws_session_token: ${{ steps.aws_creds.outputs.aws-session-token }}
           application_name: splendor-app # Must exactly match AWS Beanstalk App Name
           environment_name: splendor-app-env # Must exactly match AWS Beanstalk Env Name
           version_label: ${{ github.sha }}
