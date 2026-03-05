@@ -61,13 +61,13 @@ jobs:
 
                   # --- 1. Print directly to the terminal log (Visible in the black screen) ---
                   echo "================================================================"
-                  echo "🌐 Secure Custom Domain: https://splendor-app.me"
+                  echo "🌐 Secure Custom Domain: https://splendor-app.com"
                   echo "🔗 Internal AWS URL:     http://$RAW_URL"
                   echo "================================================================"
 
                   # --- 2. Send to the Markdown Dashboard (Visible on the Summary tab) ---
                   echo "### 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
-                  echo "- **Secure Custom Domain:** [https://splendor-app.me](https://splendor-app.me)" >> $GITHUB_STEP_SUMMARY
+                  echo "- **Secure Custom Domain:** [https://splendor-app.com](https://splendor-app.com)" >> $GITHUB_STEP_SUMMARY
                   echo "- **Internal AWS URL (Direct):** [http://$RAW_URL](http://$RAW_URL)" >> $GITHUB_STEP_SUMMARY
 
             # 8. Deploy to Elastic Beanstalk
